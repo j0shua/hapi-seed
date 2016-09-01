@@ -1,0 +1,7 @@
+{
+  "esversion": 6,
+  "extends": "eslint-config-hapi",
+  "rules": {
+    "no-shadow": 0
+  }
+}

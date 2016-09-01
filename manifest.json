@@ -1,0 +1,49 @@
+{
+    "connections": [
+        {
+            "host": "0.0.0.0",
+            "port": process.env.PORT || 8080,
+            "labels": [
+                "admin"
+            ]
+        }
+    ],
+    "registrations": [
+        {
+            "plugin": {
+                "register": "inert"
+            }
+        },
+        {
+            "plugin": {
+                "register": "vision"
+            }
+        },
+        {
+            "plugin": {
+                "register": "hapi-swagger"
+            }
+        },
+        {
+            "plugin": {
+                "register": "./plugins/basic"
+            }
+        },{
+            "plugin": {
+                "register": "good",
+                "options": {
+                    "reporters": [
+                        {
+                            "reporter": "good-console",
+                            "events": {
+                                "request": "*",
+                                "response": "*",
+                                "error": "*"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
