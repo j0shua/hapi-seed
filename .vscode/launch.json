@@ -11,16 +11,15 @@
 			"cwd": "${workspaceRoot}",
 			"preLaunchTask": null,
 			"runtimeExecutable": null,
+			"console": "integratedTerminal",
 			"runtimeArgs": [
 				"--nolazy"
 			],
 			"env": {
 				"NODE_ENV": "local",
-				"PORT": 9999
+				"PORT": "9999"
 			},
-			"externalConsole": false,
-			"sourceMaps": false,
-			"outDir": null
+			"sourceMaps": false
 		},
 		{
 			"name": "Attach",
