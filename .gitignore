@@ -36,9 +36,6 @@ node_modules
 .idea
 *.iml
 
-# visual studio code properties file
-.vscode
-
 # redis dump file
 dump.rdb
 

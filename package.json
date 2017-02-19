@@ -19,7 +19,16 @@
     "vision": "^4.1.0"
   },
   "devDependencies": {
+    "bossy": "^3.0.4",
+    "code": "^4.0.0",
     "eslint-config-hapi": "^10.0.0",
-    "eslint-plugin-hapi": "^4.0.0"
+    "eslint-plugin-hapi": "^4.0.0",
+    "glue": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-help": "^1.6.1",
+    "gulp-lab": "^1.0.7",
+    "gulp-load-plugins": "^1.5.0",
+    "lab": "^12.1.0"
   }
 }

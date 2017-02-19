@@ -60,7 +60,7 @@ const config = {
     ]
 };
 
-store.load(config)
+store.load(config);
 const manifest = store.get('/', { env: process.env.NODE_ENV });
 
 module.exports = manifest;
