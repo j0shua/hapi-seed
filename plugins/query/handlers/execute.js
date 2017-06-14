@@ -1,16 +1,13 @@
 'use strict';
 
+const Controller = require('../controller');
+
 const internals = {};
-
-internals.handler = function (request, reply) {
-
-    reply({ message: 'it works!' });
-};
 
 internals.config = {
     tags: ['api'],
     description: 'Run stuff',
-    handler: internals.handler
+    handler: Controller.execute
 };
 
 module.exports = internals.config;

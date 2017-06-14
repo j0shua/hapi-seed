@@ -1,14 +1,13 @@
 'use strict';
 
+const Controller = require('../controller');
+
 const internals = {};
 
 internals.config = {
     description: 'Probe if the system is up',
     tags: ['api'],
-    handler: (request, reply) => {
-
-        reply({ status: 'ok', 'foo': request.server.app.foo });
-    }
-};
+    handler: Controller.probe
+    };
 
 module.exports = internals.config;
