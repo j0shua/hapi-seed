@@ -8,42 +8,51 @@
             ]
         }
     ],
-    "registrations": [
-        {
-            "plugin": {
-                "register": "inert"
-            }
-        },
-        {
-            "plugin": {
-                "register": "vision"
-            }
-        },
-        {
-            "plugin": {
-                "register": "hapi-swagger"
-            }
-        },
-        {
-            "plugin": {
-                "register": "./plugins/basic"
-            }
-        },{
-            "plugin": {
-                "register": "good",
-                "options": {
-                    "reporters": [
-                        {
-                            "reporter": "good-console",
-                            "events": {
-                                "request": "*",
-                                "response": "*",
-                                "error": "*"
-                            }
-                        }
-                    ]
+    "registrations": {
+        "$filter": "env"
+        "$base": [
+            {
+                "plugin": {
+                    "register": "inert"
+                }
+            },
+            {
+                "plugin": {
+                    "register": "vision"
+                }
+            },
+            {
+                "plugin": {
+                    "register": "hapi-swagger"
+                }
+            },
+            {
+                "plugin": {
+                    "register": "./plugins/basic"
                 }
             }
-        }
-    ]
+        ], 
+        "local": [
+            {
+                "plugin": {
+                    "register": "good",
+                    "options": {
+                        "reporters": [
+                            {
+                                "reporter": "good-console",
+                                "events": {
+                                    "request": "*",
+                                    "response": "*",
+                                    "error": "*"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "test": [
+
+        ]
+    }
 }

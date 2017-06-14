@@ -19,45 +19,53 @@ const config = {
             }
         }
     },
-    'registrations': [
-        {
-            'plugin': {
-                'register': 'inert'
-            }
-        },
-        {
-            'plugin': {
-                'register': 'vision'
-            }
-        },
-        {
-            'plugin': {
-                'register': 'hapi-swagger'
-            }
-        },
-        {
-            'plugin': {
-                'register': './plugins/query'
-            }
-        },
-        {
-            'plugin': {
-                'register': 'good',
-                'options': {
-                    'reporters': [
-                        {
-                            'reporter': 'good-console',
-                            'events': {
-                                'request': '*',
-                                'response': '*',
-                                'error': '*'
-                            }
-                        }
-                    ]
+    'registrations': {
+        '$filter': 'env',
+        '$base': [
+            {
+                'plugin': {
+                    'register': 'inert'
+                }
+            },
+            {
+                'plugin': {
+                    'register': 'vision'
+                }
+            },
+            {
+                'plugin': {
+                    'register': 'hapi-swagger'
+                }
+            },
+            {
+                'plugin': {
+                    'register': './plugins/query'
                 }
             }
-        }
-    ]
+        ],
+        'local': [
+            {
+                'plugin': {
+                    'register': 'good',
+                    'options': {
+                        'reporters': [
+                            {
+                                'reporter': 'good-console',
+                                'events': {
+                                    'request': '*',
+                                    'response': '*',
+                                    'error': '*'
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        'test': [
+
+        ]
+    }
 };
 
 store.load(config);
