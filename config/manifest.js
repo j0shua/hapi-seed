@@ -22,14 +22,22 @@ const loggingConfig = {
     'plugin': {
         'register': 'good',
         'options': {
-            'reporters': [{
-                'reporter': 'good-console',
-                'events': {
-                    'request': '*',
-                    'response': '*',
-                    'error': '*'
-                }
-            }]
+            'reporters': {
+                'ops-console': [{
+                    module: 'good-squeeze',
+                    name: 'Squeeze',
+                    args: [{
+                        ops: '*',
+                        'log': '*',
+                        'request': '*',
+                        'response': '*',
+                        'error': '*'
+                    }]
+                }, {
+                    module: 'good-squeeze',
+                    name: 'SafeJson'
+                }, 'stdout']
+            }
         }
     }
 };
