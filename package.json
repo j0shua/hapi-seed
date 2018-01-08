@@ -4,19 +4,19 @@
   "description": "",
   "main": "plugin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/lab/bin/lab -c -t 90 -r html -o test-results/results.html -r clover -o test-results/clover.xml -r junit -o test-results/junit.xml -r console -o stdout -e test test",
     "start": "./node_modules/rejoice/bin/rejoice -c manifest.js -p `pwd`"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "confidence": "^3.0.1",
-    "good": "^6.6.0",
-    "good-console": "^5.3.1",
+    "good": "^7.0.0",
+    "good-console": "^6.0.0",
     "hapi": "^13.3.0",
     "hapi-swagger": "^5.0.0",
-    "inert": "^3.2.0",
-    "rejoice": "^3.3.1",
+    "inert": "^4.2.0",
+    "rejoice": "^4.0.0",
     "vision": "^4.1.0"
   },
   "devDependencies": {
@@ -26,10 +26,10 @@
     "eslint-plugin-hapi": "^4.0.0",
     "glue": "^4.1.0",
     "gulp": "^3.9.1",
-    "gulp-eslint": "^3.0.1",
+    "gulp-eslint": "^4.0.0",
     "gulp-help": "^1.6.1",
     "gulp-lab": "^1.0.7",
     "gulp-load-plugins": "^1.5.0",
-    "lab": "^12.1.0"
+    "lab": "^14.1.0"
   }
 }

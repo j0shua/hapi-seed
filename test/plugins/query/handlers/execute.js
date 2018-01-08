@@ -21,6 +21,9 @@ let server;
 
 const Rejoice = require('rejoice');
 
+//console.log(process.argv);
+//console.log('-------------------------');
+
 before((done) => {
 
     /*
@@ -59,12 +62,12 @@ before((done) => {
     });
 });
 
-experiment('Probe', () => {
+experiment('Execute', () => {
 
-    experiment('probe should work', () => {
+    experiment('endpoint should work', () => {
 
-        const url = '/probe';
-        const method = 'get';
+        const url = '/execute';
+        const method = 'post';
 
         test('should respond with 200', (done) => {
 
@@ -76,7 +79,7 @@ experiment('Probe', () => {
             server.inject(options, (res) => {
 
                 const payload = JSON.parse(res.payload);
-                const expectedResponse = { status: 'ok' };
+                const expectedResponse = { message: 'it works!' };
 
                 expect(res.statusCode).to.equal(200);
                 expect(payload).to.equal(expectedResponse);

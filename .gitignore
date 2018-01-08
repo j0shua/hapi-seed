@@ -54,3 +54,4 @@ coverage.*
 
 # miscelaneous temp files
 temp/
+test-results/
