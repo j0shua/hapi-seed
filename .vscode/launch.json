@@ -7,7 +7,7 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/node_modules/rejoice/bin/rejoice",
 			"stopOnEntry": false,
-			"args": ["-c", "manifest.js", "-p", "${workspaceRoot}"],
+			"args": ["-c", "config/manifest.js", "-p", "${workspaceRoot}"],
 			"cwd": "${workspaceRoot}",
 			"preLaunchTask": null,
 			"runtimeExecutable": null,

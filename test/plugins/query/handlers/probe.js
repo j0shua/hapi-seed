@@ -1,6 +1,7 @@
 
 'use strict';
 
+const Path = require('path');
 const Code = require('code');
 const Lab = require('lab');
 const Glue = require('glue');
@@ -13,9 +14,8 @@ const after = lab.after;
 const experiment = lab.experiment;
 
 
-const Manifest = require('../../../../manifest');
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
-
+const Manifest = require(Path.join(PROJECT_ROOT, 'config', 'manifest'));
 
 let server;
 

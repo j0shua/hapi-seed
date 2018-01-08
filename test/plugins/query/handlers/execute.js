@@ -1,6 +1,7 @@
 
 'use strict';
 
+const Path = require('path');
 const Code = require('code');
 const Lab = require('lab');
 const Glue = require('glue');
@@ -13,31 +14,12 @@ const after = lab.after;
 const experiment = lab.experiment;
 
 
-const Manifest = require('../../../../manifest');
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
-
+const Manifest = require(Path.join(PROJECT_ROOT, 'config', 'manifest'));
 
 let server;
 
-const Rejoice = require('rejoice');
-
-//console.log(process.argv);
-//console.log('-------------------------');
-
 before((done) => {
-
-    /*
-    const options = {
-        args: [
-            '-c', `${PROJECT_ROOT}/manifest.js`,
-            '-p', `${PROJECT_ROOT}`]
-    };
-    Rejoice.start(options);
-
-    // hmm server isn't passed back so how do i know when
-    // it is safe to call done ?
-    process.nextTick(done);
-    */
 
     const options = {
         relativeTo: PROJECT_ROOT
@@ -62,9 +44,9 @@ before((done) => {
     });
 });
 
-experiment('Execute', () => {
+experiment('Execute endpoint', () => {
 
-    experiment('endpoint should work', () => {
+    experiment('should respond with 200', () => {
 
         const url = '/execute';
         const method = 'post';
