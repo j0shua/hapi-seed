@@ -1,7 +1,9 @@
 {
-  "esversion": 6,
   "extends": "eslint-config-hapi",
   "rules": {
     "object-shorthand": 0
-  }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+   }
 }

@@ -19,9 +19,9 @@ const Manifest = require(Path.join(PROJECT_ROOT, 'config', 'manifest'));
 
 let server;
 
-const Rejoice = require('rejoice');
+//const Rejoice = require('rejoice');
 
-before((done) => {
+before(async () => {
 
     /*
     const options = {
@@ -31,32 +31,22 @@ before((done) => {
     };
     Rejoice.start(options);
 
-    // hmm server isn't passed back so how do i know when
-    // it is safe to call done ?
-    process.nextTick(done);
     */
 
     const options = {
         relativeTo: PROJECT_ROOT
     };
-   // load server
-    Manifest.connections[0].port = parseInt(process.env.PORT, 10);
-    Glue.compose(Manifest, options, (err, _server_) => {
 
-        if (err) {
-            throw err;
-        }
+    // load server
+    try {
 
-        server = _server_;
-        server.start((err) => {
-
-            if (err) {
-                throw err;
-            }
-
-            done();
-        });
-    });
+        server = await Glue.compose(Manifest, options);
+        await server.start();
+    }
+    catch (err) {
+        console.error('error while starting server:', err);
+        return Promise.reject(err.message);
+    }
 });
 
 experiment('Probe', () => {
@@ -66,30 +56,27 @@ experiment('Probe', () => {
         const url = '/probe';
         const method = 'get';
 
-        test('should respond with 200', (done) => {
+        test('should respond with 200', async () => {
 
             const options = {
                 url: url,
                 method: method
             };
 
-            server.inject(options, (res) => {
+            const res = await server.inject(options);
 
-                const payload = JSON.parse(res.payload);
-                const expectedResponse = { status: 'ok' };
+            const payload = JSON.parse(res.payload);
+            const expectedResponse = { status: 'ok' };
 
-                expect(res.statusCode).to.equal(200);
-                expect(payload).to.equal(expectedResponse);
-
-                done();
-            });
+            expect(res.statusCode).to.equal(200);
+            expect(payload).to.equal(expectedResponse);
         });
 
     }); // end experiment
 });
 
-after((done) => {
+after(async () => {
 
-    server.stop({ timeout: 0 }, done);
+    await server.stop({ timeout: 0 });
 
 });

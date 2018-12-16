@@ -5,9 +5,9 @@ const internals = {};
 internals.config = {
     description: 'Probe if the system is up',
     tags: ['api'],
-    handler: (request, reply) => {
+    handler: (request, h) => {
 
-        reply({ status: 'ok', 'foo': request.server.app.foo });
+        return { status: 'ok', 'foo': request.server.app.foo };
     }
 };
 

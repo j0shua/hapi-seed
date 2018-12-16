@@ -19,29 +19,22 @@ const Manifest = require(Path.join(PROJECT_ROOT, 'config', 'manifest'));
 
 let server;
 
-before((done) => {
+before(async () => {
 
     const options = {
         relativeTo: PROJECT_ROOT
     };
-   // load server
-    Manifest.connections[0].port = parseInt(process.env.PORT, 10);
-    Glue.compose(Manifest, options, (err, _server_) => {
 
-        if (err) {
-            throw err;
-        }
-
-        server = _server_;
-        server.start((err) => {
-
-            if (err) {
-                throw err;
-            }
-
-            done();
-        });
-    });
+    // load server
+    //Manifest.connections[0].port = parseInt(process.env.PORT, 10);
+    try {
+        server = await Glue.compose(Manifest, options);
+        await server.start();
+    }
+    catch (err) {
+        console.error('error while starting server', err);
+        return Promise.reject(err.message);
+    }
 });
 
 experiment('Execute endpoint', () => {
@@ -51,30 +44,28 @@ experiment('Execute endpoint', () => {
         const url = '/execute';
         const method = 'post';
 
-        test('should respond with 200', (done) => {
+        test('should respond with 200', async () => {
 
             const options = {
                 url: url,
                 method: method
             };
 
-            server.inject(options, (res) => {
+            const res = await server.inject(options);
 
-                const payload = JSON.parse(res.payload);
-                const expectedResponse = { message: 'it works!' };
+            const payload = JSON.parse(res.payload);
+            const expectedResponse = { message: 'it works!' };
 
-                expect(res.statusCode).to.equal(200);
-                expect(payload).to.equal(expectedResponse);
+            expect(res.statusCode).to.equal(200);
+            expect(payload).to.equal(expectedResponse);
 
-                done();
-            });
         });
 
     }); // end experiment
 });
 
-after((done) => {
+after(async () => {
 
-    server.stop({ timeout: 0 }, done);
+    await server.stop({ timeout: 0 });
 
 });

@@ -3,47 +3,39 @@
 const Confidence = require('confidence');
 
 const hapiSwaggerDependencies = [{
-    'plugin': {
-        'register': 'inert'
-    }
+    'plugin': 'inert'
 },
 {
-    'plugin': {
-        'register': 'vision'
-    }
+    'plugin': 'vision'
 },
 {
-    'plugin': {
-        'register': 'hapi-swagger'
-    }
+    'plugin': 'hapi-swagger'
 }];
 
 const loggingConfig = {
-    'plugin': {
-        'register': 'good',
-        'options': {
-            'reporters': [
-                {
-                    'reporter': 'good-console',
-                    'events': {
-                        'request': '*',
-                        'response': '*',
-                        'error': '*'
-                    }
-                }
-            ]
-        }
+    'plugin': 'good',
+    'options': {
+        'reporters': {
+            'myConsoleReporter': [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{
+                    log: '*',
+                    request: '*',
+                    response: '*'
+                }]
+            }, {
+                module: 'good-console'
+            }, 'stdout']
+        } // end reporters
     }
+
 };
 
 const config = {
-    'connections': [
-        {
-            'host': '0.0.0.0',
-            'port': '$env.PORT'
-        }
-    ],
     'server': {
+        'host': '0.0.0.0',
+        'port': 8888,
         'app': {
             'foo': {
                 '$filter': 'env',
@@ -52,22 +44,22 @@ const config = {
             }
         }
     },
-    'registrations': {
-        '$filter': 'env',
-        '$base': [
-            {
-                'plugin': {
-                    'register': './plugins/query'
+    'register': {
+        'plugins': {
+            '$filter': 'env',
+            '$base': [
+                {
+                    'plugin': './plugins/query'
                 }
-            }
-        ],
-        'local': [
-            ...hapiSwaggerDependencies,
-            loggingConfig
-        ],
-        'test': [
+            ],
+            'local': [
+                ...hapiSwaggerDependencies
+                ,loggingConfig
+            ],
+            'test': [
 
-        ]
+            ]
+        }
     }
 };
 

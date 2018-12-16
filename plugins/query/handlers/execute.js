@@ -2,9 +2,10 @@
 
 const internals = {};
 
-internals.handler = function (request, reply) {
+internals.handler = function (request, h) {
 
-    reply({ message: 'it works!' });
+    request.log(['server', 'request', 'api'], { message: 'helloooooooooooooo' });
+    return { message: 'it works!' };
 };
 
 internals.config = {
