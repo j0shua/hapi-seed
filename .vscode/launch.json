@@ -29,7 +29,6 @@
 			"address": "localhost",
 			"restart": false,
 			"sourceMaps": false,
-			"outDir": null,
 			"localRoot": "${workspaceRoot}",
 			"remoteRoot": null
 		}

@@ -1,0 +1,14 @@
+version: "2"
+services:
+    app:
+        build:
+          context: "."
+          dockerfile: "Dockerfile"
+        ports:
+          - "9999:8888"
+        volumes:
+          - ".:/usr/src/app"
+          - "/usr/src/app/node_modules"
+        command: nodemon --inspect=0.0.0.0:8585 start.js
+        environment:
+            NODE_ENV: "local"

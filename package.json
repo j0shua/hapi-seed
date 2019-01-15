@@ -5,6 +5,7 @@
   "main": "plugin.js",
   "scripts": {
     "test": "#running the unit tests...\n NODE_ENV=test PORT=0 PROJECT_ROOT=`pwd` ./node_modules/lab/bin/lab -l -c -t 100 -r html -o test-results/results.html -r clover -o test-results/clover.xml -r junit -o test-results/junit.xml -r console -o stdout -e test test",
+    "testv": "NODE_ENV=test PORT=0 PROJECT_ROOT=`pwd` ./node_modules/lab/bin/lab -v -L -c -t 100 -r html -o test-results/results.html -r console -o stdout -e test test",
     "dev": "nodemon start.js",
     "start": "./node_modules/rejoice/bin/rejoice -c config/manifest.js -p `pwd`"
   },

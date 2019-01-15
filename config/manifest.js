@@ -35,7 +35,7 @@ const loggingConfig = {
 const config = {
     'server': {
         'host': '0.0.0.0',
-        'port': 8888,
+        'port': process.env.PORT,
         'app': {
             'foo': {
                 '$filter': 'env',

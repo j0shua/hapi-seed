@@ -1,6 +1,7 @@
 'use strict';
 
 const Routes = require('./routes');
+
 const internals = {};
 
 internals.register = function (server, options) {
